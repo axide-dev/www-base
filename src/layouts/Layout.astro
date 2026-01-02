@@ -205,96 +205,268 @@ const { title = "Axide — Manifesto" } = Astro.props;
 
 	/* ===== Long-form Content ===== */
 	.content-wrapper {
-		background: var(--surface-black);
-		padding: var(--space-18) 0;
+		background: var(--primary-black);
+		padding: 0;
 		position: relative;
 	}
 
 	.prose {
-		max-width: 720px;
+		max-width: 900px;
 		margin: 0 auto;
-		padding: 0 var(--space-4);
+		padding: 0 var(--space-6);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
 	}
 
+	/* Lead paragraph - the opening statement, unmissable */
 	.prose .lead {
-		font-size: clamp(1.25rem, 3vw, 1.75rem);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+		font-family: 'Space Grotesk', sans-serif;
+		font-weight: 700;
+		line-height: 1.3;
+		color: var(--primary-text);
+		margin: 0 auto !important;
+		padding: var(--space-18) var(--space-6);
+		text-align: center;
+		max-width: 100%;
+		width: 100vw;
+		margin-left: calc(-50vw + 50%) !important;
+		margin-right: calc(-50vw + 50%) !important;
+		position: relative;
+		background: var(--surface-black);
+		box-sizing: border-box;
+		border-bottom: 1px solid var(--subtle-outline);
+	}
+
+	.prose .lead::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translateX(-50%) rotate(-25deg);
+		width: 80px;
+		height: 4px;
+		background: var(--magenta);
+		box-shadow: 0 0 30px var(--magenta-glow);
+		z-index: 2;
+	}
+
+	/* Ensure any nested p tags from MDX don't break the layout */
+	.prose .lead p {
+		font-size: inherit !important;
+		font-family: inherit !important;
+		font-weight: inherit !important;
+		line-height: inherit !important;
+		color: inherit !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		text-align: center !important;
+	}
+
+	/* Accent words in lead get extra glow */
+	.prose > p.lead .accent,
+	.prose > .lead .accent {
+		text-shadow: 0 0 30px var(--magenta-glow);
+	}
+
+	/* ===== Manifesto Sections ===== */
+	.prose h2 {
+		font-size: clamp(2.5rem, 6vw, 4rem);
+		margin: 0;
+		padding: var(--space-18) 0 var(--space-9);
+		text-align: center;
+		color: var(--primary-text);
+		position: relative;
+	}
+
+	/* Decorative spark before each section title */
+	.prose h2::before {
+		content: '';
+		display: block;
+		width: 40px;
+		height: 3px;
+		background: var(--magenta);
+		margin: 0 auto var(--space-6);
+		transform: rotate(-25deg);
+		box-shadow: 0 0 20px var(--magenta-glow);
+	}
+
+	/* Section content container */
+	.prose p {
+		max-width: 640px;
+		margin: 0 auto var(--space-6);
+		padding: 0;
+		color: var(--secondary-text);
+		font-size: 1.125rem;
+		line-height: 1.9;
+		text-align: center;
+	}
+
+	/* Last paragraph before a new section gets extra spacing */
+	.prose p + h2,
+	.prose ul + h2,
+	.prose blockquote + h2 {
+		margin-top: var(--space-12);
+	}
+
+	/* ===== Blockquotes - Hero statements ===== */
+	.prose blockquote {
+		max-width: 100%;
+		width: 100vw;
+		margin: var(--space-18) calc(-50vw + 50%);
+		padding: var(--space-12) var(--space-6);
+		background: var(--surface-black);
+		border: none;
+		border-left: none;
+		position: relative;
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		/* Diagonal clip effect */
+		clip-path: polygon(0 0, 100% 8px, 100% 100%, 0 calc(100% - 8px));
+	}
+
+	.prose blockquote::before {
+		content: '';
+		position: absolute;
+		left: 50%;
+		top: var(--space-4);
+		transform: translateX(-50%) rotate(-25deg);
+		width: 50px;
+		height: 3px;
+		background: var(--magenta);
+		box-shadow: 0 0 25px var(--magenta-glow);
+	}
+
+	.prose blockquote p {
+		margin: 0;
+		padding-top: var(--space-4);
+		max-width: 700px;
+		color: var(--primary-text);
+		font-size: clamp(1.375rem, 3vw, 1.75rem);
 		font-family: 'Space Grotesk', sans-serif;
 		font-weight: 600;
 		line-height: 1.5;
-		color: var(--primary-text);
-		margin-bottom: var(--space-12);
+		text-align: center;
 	}
 
-	.prose h2 {
-		margin-top: var(--space-18);
-		margin-bottom: var(--space-6);
-		text-align: left;
-	}
-
-	.prose p {
-		margin-bottom: var(--space-6);
-		color: var(--secondary-text);
-		font-size: 1.1rem;
-	}
-
-	.prose blockquote {
-		margin: var(--space-12) 0;
-		padding-left: var(--space-4);
-		border-left: 3px solid var(--magenta);
-		font-style: italic;
-		text-align: left;
-		font-size: 1.5rem;
-	}
-
+	/* ===== Lists - Key points ===== */
 	.prose ul {
-		margin-bottom: var(--space-6);
-		padding-left: var(--space-4);
+		max-width: 640px;
+		margin: var(--space-9) auto;
+		padding: 0;
 		list-style: none;
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-4);
 	}
 
 	.prose li {
 		position: relative;
-		margin-bottom: var(--space-2);
-		color: var(--secondary-text);
+		padding: var(--space-4) var(--space-6);
+		padding-left: var(--space-9);
+		background: var(--surface-black);
+		border: 1px solid var(--subtle-outline);
+		border-radius: 4px;
+		color: var(--primary-text);
+		font-size: 1.125rem;
+		line-height: 1.7;
+		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.prose li:hover {
+		border-color: var(--magenta);
+		box-shadow: 0 0 30px var(--magenta-subtle);
 	}
 
 	.prose li::before {
 		content: '';
 		position: absolute;
-		left: -20px;
-		top: 12px;
-		width: 8px;
-		height: 2px;
-		background: var(--magenta);
-		transform: rotate(-25deg);
-	}
-
-	.content-spark {
-		width: 60px;
+		left: var(--space-4);
+		top: 50%;
+		transform: translateY(-50%) rotate(-25deg);
+		width: 12px;
 		height: 3px;
 		background: var(--magenta);
-		margin: var(--space-12) 0;
+		box-shadow: 0 0 10px var(--magenta-glow);
+	}
+
+	/* ===== Content Spark - Section divider ===== */
+	.content-spark {
+		width: 80px;
+		height: 3px;
+		background: var(--magenta);
+		margin: var(--space-18) auto;
 		transform: rotate(-25deg);
-		opacity: 0.5;
+		box-shadow: 0 0 25px var(--magenta-glow);
+		position: relative;
+	}
+
+	.content-spark::before,
+	.content-spark::after {
+		content: '';
+		position: absolute;
+		height: 2px;
+		background: var(--magenta);
+		opacity: 0.4;
+	}
+
+	.content-spark::before {
+		width: 30px;
+		top: -20px;
+		left: 60px;
+		transform: rotate(10deg);
+	}
+
+	.content-spark::after {
+		width: 20px;
+		top: 25px;
+		left: -10px;
+		transform: rotate(-5deg);
+	}
+
+	/* ===== Final section styling ===== */
+	.prose > *:last-child {
+		margin-bottom: 0;
+		padding-bottom: var(--space-18);
 	}
 
 	/* ===== Footer ===== */
 	.footer {
 		padding: var(--space-18) 0;
-		background: var(--primary-black);
-		border-top: 1px solid var(--subtle-outline);
+		background: var(--surface-black);
+		border-top: none;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.footer::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: -10%;
+		width: 120%;
+		height: 1px;
+		background: linear-gradient(90deg, transparent, var(--subtle-outline) 20%, var(--magenta) 50%, var(--subtle-outline) 80%, transparent);
+		transform: rotate(-1deg);
 	}
 
 	.footer-text {
 		text-align: center;
 		font-family: 'Space Grotesk', sans-serif;
 		font-weight: 600;
-		font-size: 1rem;
+		font-size: 0.875rem;
 		color: var(--secondary-text);
-		letter-spacing: 0.1em;
+		letter-spacing: 0.15em;
 		text-transform: uppercase;
 	}
 
