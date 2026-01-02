@@ -44,6 +44,7 @@ const { title = "Axide — Manifesto" } = Astro.props;
 		<footer class="footer">
 			<div class="container">
 				<p class="footer-text">Axide <span class="accent">—</span> 2026</p>
+				<p class="footer-contact"><a href="mailto:contact@axide.org">contact@axide.org</a></p>
 			</div>
 		</footer>
 	</body>
@@ -397,6 +398,38 @@ const { title = "Axide — Manifesto" } = Astro.props;
 		box-shadow: 0 0 10px var(--magenta-glow);
 	}
 
+	/* ===== Buttons ===== */
+	.btn-container {
+		margin: var(--space-9) auto;
+		display: flex;
+		justify-content: center;
+	}
+
+	.btn-primary {
+		display: inline-block;
+		padding: var(--space-3) var(--space-6);
+		background: var(--magenta);
+		color: var(--primary-text);
+		font-family: 'Space Grotesk', sans-serif;
+		font-weight: 700;
+		text-decoration: none;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		border-radius: 4px;
+		transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+		box-shadow: 0 0 20px var(--magenta-glow);
+	}
+
+	.btn-primary:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 0 40px var(--magenta-glow);
+		background: #ff26a1; /* Slightly brighter magenta */
+	}
+
+	.btn-primary:active {
+		transform: translateY(0);
+	}
+
 	/* ===== Content Spark - Section divider ===== */
 	.content-spark {
 		width: 80px;
@@ -468,6 +501,22 @@ const { title = "Axide — Manifesto" } = Astro.props;
 		color: var(--secondary-text);
 		letter-spacing: 0.15em;
 		text-transform: uppercase;
+	}
+
+	.footer-contact {
+		text-align: center;
+		margin-top: var(--space-2);
+		font-size: 0.875rem;
+	}
+
+	.footer-contact a {
+		color: var(--secondary-text);
+		text-decoration: none;
+		transition: color 0.2s ease;
+	}
+
+	.footer-contact a:hover {
+		color: var(--magenta);
 	}
 
 	/* ===== Responsive ===== */
